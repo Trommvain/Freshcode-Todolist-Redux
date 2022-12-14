@@ -39,10 +39,14 @@ const TodoList = () => {
   const validateInput = (value) => {
     let error;
     if (!value) {
-      actionCreators.toggleInputValidation();
+      //чтобы избежать переключения стилей при многократном
+      //нажатии ADD при пустом поле
+      if (isInputValid !== false) {
+        actionCreators.toggleInputValidation();
+      }
       error = "Write some text to add a task!";
     } else if (!isInputValid) {
-      actionCreators.toggleInputValidation();
+      actionCreators.toggleInputValidation(); //если начинаем писать в "красном" поле стили меняются на нормальный инпут
     }
     return error;
   };
